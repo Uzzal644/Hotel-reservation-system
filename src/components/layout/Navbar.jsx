@@ -1,13 +1,14 @@
-// import  {  useState } from "react"
+import  {  useState } from "react"
 import { NavLink, Link } from "react-router-dom"
 
 
 const NavBar = () => {
-	// const [showAccount, setShowAccount] = useState(false)
 
-	// const handleAccountClick = () => {
-	// 	setShowAccount(!showAccount)
-	// }
+	const [showAccount, setShowAccount] = useState(false)
+
+	const handleAccountClick = () => {
+		setShowAccount(!showAccount)
+	}
 
 	const isLoggedIn = localStorage.getItem("token")
 	const userRole = localStorage.getItem("userRole")
@@ -16,7 +17,7 @@ const NavBar = () => {
 		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
 			<div className="container-fluid">
 				<Link to={"/"} className="navbar-brand">
-					<span className="hotel-color">lakeSide Hotel</span>
+					<span className="hotel-color">Hotel Reservation</span>
 				</Link>
 
 				<button
@@ -53,6 +54,32 @@ const NavBar = () => {
 								Find my booking
 							</NavLink>
 						</li>
+						<li className="nav-item dropdown">
+							<a
+								className={`nav-link dropdown-toggle ${showAccount ? "show" : ""}`}
+								href="#"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+								onClick={handleAccountClick}>
+								{" "}
+								Account
+							</a>
+
+							<ul
+								className={`dropdown-menu ${showAccount ? "show" : ""}`}
+								aria-labelledby="navbarDropdown">
+								
+									<li>
+										<Link className="dropdown-item" to={"/login-or-logout"}>
+											Login/Logout
+										</Link>
+									</li>
+									
+								
+							</ul>
+						</li>
+
 					</ul>
 				</div>
 			</div>

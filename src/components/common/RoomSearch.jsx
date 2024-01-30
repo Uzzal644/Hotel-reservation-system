@@ -29,7 +29,7 @@ const RoomSearch = () => {
 			return
 		}
 		setIsLoading(true)
-		getAvailableRooms(searchQuery.checkInDate, searchQuery.checkOutDate, searchQuery.roomType)
+		getAvailableRooms(searchQuery.checkInDate, searchQuery.checkOutDate, searchQuery.type)
 			.then((response) => {
 				setAvailableRooms(response.data)
 				setTimeout(() => setIsLoading(false), 2000)

@@ -19,7 +19,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 	formData.append("roomType", roomType)
 	formData.append("roomPrice", roomPrice)
 
-	const response = await api.post("/rooms/add/new-room", formData,{
+	const response = await api.post("/api/rooms/addnewroom", formData,{
 		headers: getHeader()
 	})
 	if (response.status === 201) {
@@ -32,7 +32,7 @@ export async function addRoom(photo, roomType, roomPrice) {
 /* This function gets all room types from thee database */
 export async function getRoomTypes() {
 	try {
-		const response = await api.get("api/rooms/getallrooms")
+		const response = await api.get("/api/rooms/getallrooms")
 		return response.data
 	} catch (error) {
 		throw new Error("Error fetching room types")
@@ -49,9 +49,9 @@ export async function getAllRooms() {
 }
 
 /* This function deletes a room by the Id */
-export async function deleteRoom(roomId) {
+export async function deleteRoom() {
 	try {
-		const result = await api.delete(`/rooms/delete/room/${roomId}`, {
+		const result = await api.delete(`/api/rooms/deleteroombyid`, {
 			headers: getHeader()
 		})
 		return result.data
@@ -65,16 +65,16 @@ export async function updateRoom(roomId, roomData) {
 	formData.append("roomType", roomData.roomType)
 	formData.append("roomPrice", roomData.roomPrice)
 	formData.append("photo", roomData.photo)
-	const response = await api.put(`/rooms/update/${roomId}`, formData,{
+	const response = await api.put(`api/rooms/updateroombyid`, formData,{
 		headers: getHeader()
 	})
 	return response
 }
 
 // /* This funcction gets a room by the id */
-export async function getRoomById(roomId) {
+export async function getRoomById() {
 	try {
-		const result = await api.get(`/rooms/room/${roomId}`)
+		const result = await api.post(`api/rooms/getroombyid`)
 		return result.data
 	} catch (error) {
 		throw new Error(`Error fetching room ${error.message}`)
@@ -140,73 +140,9 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 	return result
 }
 
-// /* This function register a new user */
-// export async function registerUser(registration) {
-// 	try {
-// 		const response = await api.post("/auth/register-user", registration)
-// 		return response.data
-// 	} catch (error) {
-// 		if (error.reeponse && error.response.data) {
-// 			throw new Error(error.response.data)
-// 		} else {
-// 			throw new Error(`User registration error : ${error.message}`)
-// 		}
-// 	}
-// }
-
-// /* This function login a registered user */
-// export async function loginUser(login) {
-// 	try {
-// 		const response = await api.post("/auth/login", login)
-// 		if (response.status >= 200 && response.status < 300) {
-// 			return response.data
-// 		} else {
-// 			return null
-// 		}
-// 	} catch (error) {
-// 		console.error(error)
-// 		return null
-// 	}
-// }
-
-// /*  This is function to get the user profile */
-// export async function getUserProfile(userId, token) {
-// 	try {
-// 		const response = await api.get(`users/profile/${userId}`, {
-// 			headers: getHeader()
-// 		})
-// 		return response.data
-// 	} catch (error) {
-// 		throw error
-// 	}
-// }
-
-// /* This isthe function to delete a user */
-// export async function deleteUser(userId) {
-// 	try {
-// 		const response = await api.delete(`/users/delete/${userId}`, {
-// 			headers: getHeader()
-// 		})
-// 		return response.data
-// 	} catch (error) {
-// 		return error.message
-// 	}
-// }
-
-// /* This is the function to get a single user */
-// export async function getUser(userId, token) {
-// 	try {
-// 		const response = await api.get(`/users/${userId}`, {
-// 			headers: getHeader()
-// 		})
-// 		return response.data
-// 	} catch (error) {
-// 		throw error
-// 	}
-// }
 
 // /* This is the function to get user bookings by the user id */
-export async function getBookingsByUserId(userId, token) {
+export async function getBookingsByUserId(userId) {
 	try {
 		const response = await api.get(`/bookings/user/${userId}/bookings`, {
 			headers: getHeader()

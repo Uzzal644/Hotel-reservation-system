@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { getAllRooms } from "../utils/ApiFunctions"
 import RoomCard from "./RoomCard"
 import { Col, Container, Row } from "react-bootstrap"
@@ -44,7 +44,7 @@ const Room = () => {
 		const endIndex = startIndex + roomsPerPage
 		return filteredData
 			.slice(startIndex, endIndex)
-			.map((room) => <RoomCard key={room.id} room={room} />)
+			.map((room) => <RoomCard key={room._id} room={room} />)
 	}
 
 	return (

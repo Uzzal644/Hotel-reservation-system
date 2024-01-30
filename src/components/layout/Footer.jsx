@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import { Col, Container, Row } from "react-bootstrap"
 
 const Footer = () => {
@@ -8,7 +8,7 @@ const Footer = () => {
 			<Container>
 				<Row>
 					<Col xs={12} md={12} className="text-center">
-						<p className="mb-0"> &copy; {today.getFullYear()} lakeSide Hotel</p>
+						<p className="mb-0"> &copy; {today.getFullYear()} Hotel Reservation</p>
 					</Col>
 				</Row>
 			</Container>

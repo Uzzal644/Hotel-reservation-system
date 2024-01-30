@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import  { useState } from "react"
 
 const RoomFilter = ({ data, setFilteredData }) => {
 	const [filter, setFilter] = useState("")
